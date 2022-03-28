@@ -3,22 +3,17 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"strconv"
-
-	"github.com/julienschmidt/httprouter"
 )
 
-func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Request){
+func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Create a new Movie")
 }
 
-func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request){
+func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request) {
 
+	id, err := app.readIDParam(w, r)
 
-	params := httprouter.ParamsFromContext(r.Context())
-
-	id, err := strconv.ParseInt(params.ByName("id"), 10, 64)
-	if err != nil{
+	if err != nil {
 		http.NotFound(w, r)
 		return
 	}

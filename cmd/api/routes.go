@@ -6,11 +6,11 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-
-func (app *application) routes() *httprouter.Router{
+func (app *application) routes() *httprouter.Router {
 	// Initialize a new httprouter router instance.
 	router := httprouter.New()
 
+	router.RedirectTrailingSlash = true
 
 	router.HandlerFunc(http.MethodGet, "/v1/healthcheck", app.healthcheckHandler)
 	router.HandlerFunc(http.MethodPost, "/v1/movies", app.createMovieHandler)
