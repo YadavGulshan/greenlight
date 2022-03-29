@@ -2,12 +2,12 @@ package data
 
 import "time"
 
-type Movie struct{
-	ID int64
-	CreatedAt time.Time
-	Title string
-	Year int32
-	Runtime int32
-	Genre []string
-	Version int32 
+type Movie struct {
+	ID        int64     `json:"id"`
+	CreatedAt time.Time `json:"created_at"`
+	Title     string    `json:"title"`
+	Year      int32     `json:"year"`
+	Runtime   int32     `json:"runtime"`
+	Genre     []string  `json:"genre"`
+	Version   int32     `json:"version"`
 }
