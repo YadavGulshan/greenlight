@@ -31,7 +31,7 @@ func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request)
 		Version:   1,
 	}
 
-	err = app.writeJSON(w, http.StatusOK, movie, nil)
+	err = app.writeJSON(w, http.StatusOK, envolope{"movie": movie}, nil)
 	if err != nil {
 		app.logger.Println(err)
 		http.Error(w, "We're unable to serve your request", http.StatusInternalServerError)
