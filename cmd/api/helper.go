@@ -77,6 +77,14 @@ func (app *application) readJson(w http.ResponseWriter, r *http.Request, dst int
 			return err
 		}
 	}
+	// Call Decode() again, using a pointer to an empty anonymous struct as the
+	// destination. If the request body only contained a single JSON value this will
+	// return an io.EOF error. So if we get anything else, we know that there is
+	// additional data in the request body and we return our own custom error message.
+	err = dec.Decode(&struct{}{})
+	if err != io.EOF {
+		return errors.New("body must only contain a single JSON value")
+	}
 
 	return nil
 }
