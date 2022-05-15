@@ -39,7 +39,6 @@ func main() {
 		logger: logger,
 	}
 
-
 	// Creating the http server
 	srv := http.Server{
 		Addr:         fmt.Sprintf(":%d", cfg.port),
@@ -49,7 +48,7 @@ func main() {
 		WriteTimeout: 30 * time.Second,
 	}
 
-	logger.Printf("starting %s server on %s", cfg.env, srv.Addr)
+	logger.Printf("starting %s server on http://127.0.0.1%s", cfg.env, srv.Addr)
 	err := srv.ListenAndServe()
 	logger.Fatal(err)
 }
