@@ -24,6 +24,9 @@ func (app *application) readIDParam(w http.ResponseWriter, r *http.Request) (int
 }
 
 func (app *application) writeJSON(w http.ResponseWriter, status int, data envolope, headers http.Header) error {
+	// Helps with formatting on json response, but it is not good for performance.
+	// And kinda useless.
+	// json, err := json.MarshalIndent(data, "", "\t")
 	json, err := json.Marshal(data)
 
 	if err != nil {
